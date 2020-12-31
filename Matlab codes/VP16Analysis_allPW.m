@@ -463,11 +463,11 @@ figure
 results=multcompare(stats);
 %% Maximizing MI/influence on number of inputs for Figure 4b
 range_of_inputs=119;
-cd('Flow cytometry data')
+%cd('Flow cytometry data')
 Cond0_file_name=names(25:28);
 P=string(['/P';'/P';'/P';'/P']);
 S=string([' light/';' light/';' light/';' light/' ]);
-Cond0_file_name=strcat(string(date(25:28)),'/dark','/',Cond0_file_name);
+Cond0_file_name=strcat('Flow cytometry data/', string(date(25:28)),'/dark','/',Cond0_file_name);
 Conditions=[];
 for j=1:length(range_of_inputs)
 Number_of_outputs=range_of_inputs(j);%includes no signal/dark condition and last one
@@ -495,7 +495,7 @@ for i=1:Number_of_outputs-1
     temp=names(conditionNumber==Conditions(i));
         temp1=date(conditionNumber==Conditions(i));
         temp2=plateNumber(conditionNumber==Conditions(i));
-Cond_file_names(:,i)=strcat(string(temp1(1:4)),P,string(temp2(1:4)),S,temp(1:4));
+Cond_file_names(:,i)=strcat('Flow cytometry data/',string(temp1(1:4)),P,string(temp2(1:4)),S,temp(1:4));
 end
 
 for l=1:4
