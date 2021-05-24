@@ -135,10 +135,10 @@ elseif PWinput==3600
 end
 %color=log(Frequency);
 size_marker=NaN*ones(length(Frequency),1);
-size_marker(amplitude==6e9)=70;
-size_marker(amplitude==1.2e10)=100;
-size_marker(amplitude==4e10)=140;
-size_marker(amplitude==6e10)=160;
+size_marker(amplitude==6e9)=80;
+size_marker(amplitude==1.2e10)=200;
+size_marker(amplitude==4e10)=320;
+size_marker(amplitude==6e10)=480;
 
 %Figure 2 FC vs intensity
 fig2=figure;

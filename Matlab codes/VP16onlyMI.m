@@ -10,7 +10,7 @@ clear all
 global p m n
 %Find max fluorescence and put into single matrix, Y
 [allData,names]=xlsread('Excel Files/VP16Analysis.xlsx');
-names=names(:,5);
+names=names(:,10);
 mCherryMedian=allData(:,1);
 mCherryCV=allData(:,2)./100;
 inverseFrequency=allData(:,3);
@@ -220,7 +220,7 @@ for i=2:6
     for j=1:length(list_of_infreq)
         frequency_color=round(j*2+j^3/343*8+3);
         dot_color=color_PWM(frequency_color,:);
-scatter(mean(1./infreq_AM(infreq_AM==1./list_of_infreq(j) & PW_AM==list_of_PWs(i))),mean(Imax_AM_re(infreq_AM==1./list_of_infreq(j) & PW_AM==list_of_PWs(i))),140,dot_color,'filled')
+scatter(mean(1./infreq_AM(infreq_AM==1./list_of_infreq(j) & PW_AM==list_of_PWs(i))),mean(Imax_AM_re(infreq_AM==1./list_of_infreq(j) & PW_AM==list_of_PWs(i))),200,dot_color,'filled')
     end
 end
 xlim([.5e-6,1])
@@ -243,7 +243,7 @@ for i=2:6
     for j=1:length(list_of_infreq)
         frequency_color=round(j*2+j^3/343*8+3);
         dot_color=color_PWM(frequency_color,:);
-scatter(mean(PW_AM(infreq_AM==1./list_of_infreq(j) & PW_AM==list_of_PWs(i))),mean(Imax_AM_re(infreq_AM==1./list_of_infreq(j) & PW_AM==list_of_PWs(i))),140,dot_color,'filled')
+scatter(mean(PW_AM(infreq_AM==1./list_of_infreq(j) & PW_AM==list_of_PWs(i))),mean(Imax_AM_re(infreq_AM==1./list_of_infreq(j) & PW_AM==list_of_PWs(i))),200,dot_color,'filled')
     end
 end
 xlim([4.5,3600])
@@ -265,7 +265,7 @@ for i=2:6
     for j=2:5
         dot_size=size_marker(j-1);
         dot_color=color_PWM(frequency_color,:);
-scatter(mean(Amp_FM(PW_FM==list_of_PWs(i) & Amp_FM==list_of_amp(j))),mean(Imax_FM_re1(PW_FM==list_of_PWs(i) & Amp_FM==list_of_amp(j))),140,dot_color,'filled')
+scatter(mean(Amp_FM(PW_FM==list_of_PWs(i) & Amp_FM==list_of_amp(j))),mean(Imax_FM_re1(PW_FM==list_of_PWs(i) & Amp_FM==list_of_amp(j))),200,dot_color,'filled')
     end
 end
 
@@ -286,7 +286,7 @@ for i=2:6
         dot_size=size_marker(j-1);
          frequency_color=round(j*3+j^3/343*8+2);
          dot_color=color_PWM(frequency_color,:);
-scatter(mean(PW_FM(PW_FM==list_of_PWs(i) & Amp_FM==list_of_amp(j))),mean(Imax_FM_re1(PW_FM==list_of_PWs(i) & Amp_FM==list_of_amp(j))),140,dot_color,'filled')
+scatter(mean(PW_FM(PW_FM==list_of_PWs(i) & Amp_FM==list_of_amp(j))),mean(Imax_FM_re1(PW_FM==list_of_PWs(i) & Amp_FM==list_of_amp(j))),200,dot_color,'filled')
     end
 end
 xlim([.5e-6,1])
@@ -312,7 +312,7 @@ for i=2:5
          dot_color=color_PWM(frequency_color,:);
          dot_size=size_marker(i-1);
 %boxplot(Imax_FM_re1(PW_FM==list_of_PWs(i)),Amp_FM(PW_FM==list_of_PWs(i)),'positions',Amp_FM(PW_FM==list_of_PWs(i)),'plotstyle','compact','colors',colors(i-1))
-scatter(mean(amp_PWM(infreq_PWM==list_of_infreq(j) & amp_PWM==list_of_amp(i))),mean(Imax_PWM_re(infreq_PWM==list_of_infreq(j) & amp_PWM==list_of_amp(i))),140,dot_color,'filled')
+scatter(mean(amp_PWM(infreq_PWM==list_of_infreq(j) & amp_PWM==list_of_amp(i))),mean(Imax_PWM_re(infreq_PWM==list_of_infreq(j) & amp_PWM==list_of_amp(i))),200,dot_color,'filled')
     end
 end
 
@@ -335,7 +335,7 @@ for i=2:5
          dot_color=color_PWM(frequency_color,:);
          dot_size=size_marker(i-1);
 %boxplot(Imax_FM_re1(PW_FM==list_of_PWs(i)),Amp_FM(PW_FM==list_of_PWs(i)),'positions',Amp_FM(PW_FM==list_of_PWs(i)),'plotstyle','compact','colors',colors(i-1))
-scatter(mean(1./infreq_PWM(infreq_PWM==list_of_infreq(j) & amp_PWM==list_of_amp(i))),mean(Imax_PWM_re(infreq_PWM==list_of_infreq(j) & amp_PWM==list_of_amp(i))),140,dot_color,'filled')
+scatter(mean(1./infreq_PWM(infreq_PWM==list_of_infreq(j) & amp_PWM==list_of_amp(i))),mean(Imax_PWM_re(infreq_PWM==list_of_infreq(j) & amp_PWM==list_of_amp(i))),200,dot_color,'filled')
     end
 end
 ylim([0,1.6])
@@ -367,10 +367,12 @@ PWM_all=figure;
 
 hold on
 histogram(data_0(:,6)./data_0(:,1).*10,edges,'FaceColor','k','normalization','probability');
+%histogram(data_0(:,6),edges,'FaceColor','k','normalization','probability');
 PWM_subplot=figure;
 
 subplot(4,1,1);
 histogram(data_0(:,6)./data_0(:,1).*10,edges,'FaceColor','k','normalization','probability');
+%histogram(data_0(:,6),edges,'FaceColor','k','normalization','probability');
 set(gca,'XScale','log') 
 set(gca,'box','off')
 set(gca,'linewidth',1.5,'ticklength',[0.01 0.01])
@@ -387,7 +389,7 @@ data3=csvread(Cond_file_names(3),1,0);
 data4=csvread(Cond_file_names(4),1,0);
 data=[data1;data2;data3;data4];
 data=data(:,6)./data(:,1).*10;
-
+%data=data(:,6);
 figure(PWM_all)
 histogram(data,edges,'FaceColor',color(i).h(20,:),'normalization','probability','FaceAlpha',1);
 set(gca,'XScale','log')
@@ -414,12 +416,14 @@ FM_all=figure;
 hold on
 
 histogram(data_0(:,6)./data_0(:,1).*10,edges,'FaceColor','k','normalization','probability');
+%histogram(data_0(:,6),edges,'FaceColor','k','normalization','probability');
 xlim([-1,3000])
 ylim([0,0.2])
 set(gca,'linewidth',1.5,'ticklength',[0.01 0.01])
 FM_subplot=figure;
 subplot(7,1,1)
-histogram(data_0(:,6)./data_0(:,1),edges,'FaceColor','k','normalization','probability');
+%histogram(data_0(:,6)./data_0(:,1),edges,'FaceColor','k','normalization','probability');
+histogram(data_0(:,6),edges,'FaceColor','k','normalization','probability');
 xlim([-1,3000])
 ylim([0,0.2])
 set(gca,'XScale','log') 
@@ -437,7 +441,7 @@ data3=csvread(Cond_file_names(3),1,0);
 data4=csvread(Cond_file_names(4),1,0);
 data=[data1;data2;data3;data4];
 data=data(:,6)./data(:,1).*10;
-
+%data=data(:,6);
 
 figure(FM_all)%subplot(7,1,i+1)
 histogram(data,edges,'FaceColor',color(i).h(20,:),'normalization','probability','FaceAlpha',1);
@@ -462,9 +466,11 @@ Amps=[6e9 1.2e10 4e10 6e10];
 AM_all=figure;
 hold on
 histogram(data_0(:,6)./data_0(:,1).*10,edges,'FaceColor','k','normalization','probability');
+%histogram(data_0(:,6),edges,'FaceColor','k','normalization','probability');
 AM_subplot=figure;
 subplot(5,1,1)
 histogram(data_0(:,6)./data_0(:,1).*10,edges,'FaceColor','k','normalization','probability');
+%histogram(data_0(:,6),edges,'FaceColor','k','normalization','probability');
 set(gca,'XScale','log')
 set(gca,'box','off')
 xlim([-1,3000])   
@@ -480,6 +486,7 @@ data3=csvread(Cond_file_names(3),1,0);
 %data4=load(Cond_file_names(4));
 data=[data1;data2;data3;data4];
 data=data(:,6)./data(:,1).*10;
+%data=data(:,6);
 figure(AM_all)
 histogram(data,edges,'FaceColor',color(i).h(20,:),'normalization','probability','FaceAlpha',1);
 set(gca,'XScale','log')
